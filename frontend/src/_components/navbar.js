@@ -17,9 +17,12 @@ export default class Navbar extends Component {
                     <li className="nav-item">
                         <Link to="/create-shift" className="nav-link">Create Shift</Link>
                     </li>
+<<<<<<< HEAD
                     <li className="nav-item">
                         <Link to="/staff" className="nav-link">Staff</Link>
                     </li>
+=======
+>>>>>>> 8d1b1ea5d668929406607c1ad2415b8abcf82b87
                 </ul>
                 </div>
             </nav>
