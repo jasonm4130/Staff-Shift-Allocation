@@ -12,6 +12,11 @@ const shiftSchema = new Schema({
         type: String,
         required: true
     },
+    requiredRole: {
+        type: String,
+        enum: ["Manager", "Chef", "Dishwasher", "Cook"],
+        required: true
+    },
     hours: {
         type: Number,
         required: true

@@ -20,7 +20,7 @@ module.exports = {
             day: args.shiftInput.day,
             description: args.shiftInput.description,
             hours: +args.shiftInput.hours,
-            assignedStaffMember: args.shiftInput.assignedStaffMember
+            requiredRole: args.shiftInput.requiredRole
         });
         
         try {
@@ -43,6 +43,14 @@ module.exports = {
 
             if (!shift) {
                 throw "No shift found";
+            }
+
+            const currentHours = await getStaffMemberAssignedHours(staffMember._id);
+
+            console.log(currentHours);
+
+            if (currentHours + shift.hours > staffMember.maxHours) {
+                throw "Cannot assign staf member to shift, maximum hours reached";
             }
 
             if (!staffMember.assignedShifts.some(assignedShift => {
@@ -96,4 +104,24 @@ module.exports = {
             throw error;
         }
     },
+}
+
+const getStaffMemberAssignedHours = async (staffId) => {
+    try {
+        const staffMember = await StaffMember.findById(staffId).populate('assignedShifts');
+
+        if (!staffMember) {
+            throw "Staff member not found";
+        }
+
+        let currentHours = 0;
+
+        staffMember.assignedShifts.forEach(shift => {
+            currentHours += shift.hours;
+        });
+
+        return currentHours;
+    } catch (error) {
+        throw error;
+    }
 }

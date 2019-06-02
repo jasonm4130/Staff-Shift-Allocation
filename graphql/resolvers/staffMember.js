@@ -1,3 +1,5 @@
+const StaffMember = require('../../models/staffMember');
+
 module.exports = {
     staffMembers: async () => {
         try {
@@ -15,7 +17,9 @@ module.exports = {
     createStaffMember: async (args) => {
         const staffMember = new StaffMember({
             name: args.staffMemberInput.name,
-            maxHours: +args.staffMemberInput.maxHours
+            maxHours: +args.staffMemberInput.maxHours,
+            daysUnavailable: args.staffMemberInput.daysUnavailable,
+            validRoles: args.staffMemberInput.validRoles
         });
 
         try {
