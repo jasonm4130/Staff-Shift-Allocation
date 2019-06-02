@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Shift from './shift';
+import apiEndpoint from '../apiEndpoint';
 
 export default class DisplayShifts extends Component {
 
@@ -88,7 +89,7 @@ export default class DisplayShifts extends Component {
             `
         }
 
-        fetch('http://localhost:8000/api', {
+        fetch(apiEndpoint, {
             method: 'POST',
             body: JSON.stringify(request),
             headers: {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import apiEndpoint from '../apiEndpoint';
 
 const days = [
     { value: 'MON', label: 'Monday' },
@@ -82,7 +83,7 @@ export default class CreateStaff extends Component {
             `
         }
 
-        fetch('http://localhost:3000/api', {
+        fetch(apiEndpoint, {
             method: 'POST',
             body: JSON.stringify(request),
             headers: {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import StaffMember from './staffMember';
+import apiEndpoint from '../apiEndpoint';
 
 export default class DisplayStaff extends Component {
 
@@ -66,7 +67,7 @@ export default class DisplayStaff extends Component {
             `
         }
 
-        fetch('http://localhost:3000/api', {
+        fetch(apiEndpoint, {
             method: 'POST',
             body: JSON.stringify(request),
             headers: {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import apiEndpoint from '../apiEndpoint';
 
 const days = [
     { value: 'MON', label: 'Monday' },
@@ -71,7 +72,7 @@ export default class CreateShift extends Component {
             `
         }
 
-        fetch('https://shift-allocation.herokuapp.com/api', {
+        fetch(apiEndpoint, {
             method: 'POST',
             body: JSON.stringify(request),
             headers: {
