@@ -5,6 +5,7 @@ import CreateStaff from './_components/createStaff';
 import CreateShift from './_components/createShift';
 import DisplayStaff from './_components/displayStaff';
 import DisplayShifts from './_components/displayShifts';
+import Home from './_components/home';
 
 function App() {
     return (
@@ -12,6 +13,11 @@ function App() {
             <div className="App">
                 <Navbar />
                 <div className="container">
+                    <Route
+                        exact
+                        path="/"
+                        component={() => <Home/>}
+                    />
                     <Route
                         path="/create-staff"
                         component={() => <CreateStaff />}
