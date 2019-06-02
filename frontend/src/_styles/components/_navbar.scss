@@ -1,0 +1,20 @@
+.navbar {
+    background: darken($background, 10%);
+    .nav {
+        &-link {
+            color: white;
+            transition: color 0.3s ease-in-out;
+            &:hover {
+                color: $highlight;
+                text-decoration: none;
+            }
+        }
+    }
+    &-brand {
+        color: white;
+        transition: color 0.3s ease-in-out;
+        &:hover {
+            color: $highlight;
+        }
+    }
+}
