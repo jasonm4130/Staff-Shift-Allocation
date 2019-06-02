@@ -1,0 +1,14 @@
+.btn {
+    border: none;
+    &-primary {
+        background: $highlight;
+        color: white;
+        border-radius: rem(4px);
+        padding: rem(10px 25px);
+        transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        &:hover {
+            background: darken($highlight, 5%);
+            box-shadow: rem(5px 5px 3px 0px) rgba(black, 0.4)
+        }
+    }
+}

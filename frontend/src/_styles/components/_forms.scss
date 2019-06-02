@@ -1,0 +1,15 @@
+.form {
+    &-control {
+        .select {
+            &__option {
+                color: $background;
+            }
+        }
+        .text-input {
+            padding: rem(2px 8px);
+            border: rem(1px) solid hsl(0,0%,80%);
+            border-radius: rem(4px);
+            min-height: rem(38px);
+        }
+    }
+}
