@@ -66,7 +66,7 @@ export default class DisplayStaff extends Component {
             `
         }
 
-        fetch('http://localhost:8000/api', {
+        fetch('https://shift-allocation.herokuapp.com/api', {
             method: 'POST',
             body: JSON.stringify(request),
             headers: {
