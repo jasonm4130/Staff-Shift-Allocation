@@ -28,4 +28,4 @@ const staffMemberSchema = new Schema({
     ]
 });
 
-module.exports = mongoose.model('StaffMembers', staffMemberSchema);
+module.exports = mongoose.model('StaffMember', staffMemberSchema);

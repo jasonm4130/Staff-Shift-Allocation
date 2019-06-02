@@ -1,53 +1,75 @@
 import React, { Component } from 'react'
-import StaffMember from './staffMember';
+import Shift from './shift';
 
-export default class DisplayStaff extends Component {
+export default class DisplayShifts extends Component {
 
     constructor(props) {
         super(props)
 
         this.state = {
-            staff: null,
+            data: null,
+            shiftAssignedMessage: null,
         }
 
-        this.getStaffMembers();
+        this.getShifts = this.getShifts.bind(this);
+        this.shiftAssigned = this.shiftAssigned.bind(this);
+
+        this.getShifts();
 
     }
 
     render() {
         return (
             <div className="m-t-75">
-                <h1>Staff Members</h1>
+                <h1>Shifts</h1>
                 <div className="row">
-                    { this.displayStaffMembers() }
+                    { this.displayShifts() }
                 </div>
             </div>
         )
     }
 
-    displayStaffMembers() {
-        if(this.state.staff) {
-            let staffMembers = [];
+    displayShifts() {
+        if(this.state.data) {
+            let shifts = [];
 
-            this.state.staff.data.staffMembers.forEach((staffMember, key) => {
-                staffMembers.push(
-                    <div className="col-md-4" key={staffMember._id}>
-                        <StaffMember
-                            staff={staffMember}
+            this.state.data.shifts.forEach((shift, key) => {
+                shifts.push(
+                    <div className="col-md-4" key={shift._id}>
+                        <Shift
+                            shift={shift}
+                            staff={this.state.data.staffMembers}
+                            callback={this.getShifts}
                         />
                     </div>
                 );
             });
-            return staffMembers;
+            return shifts;
         }
         return null;
     }
 
-    getStaffMembers() {
+    shiftAssigned() {
+        this.setState({
+            shiftAssignedMessage: "Your shift has been assigned, please refresh to view updates.",
+        })
+    }
+
+    getShifts() {
 
         const request = {
             query: `
             query {
+                shifts {
+                    _id
+                    day
+                    description
+                    hours
+                    requiredRole
+                    assignedStaffMember {
+                        name
+                    }
+                }
                 staffMembers {
                     _id
                     name
@@ -81,7 +103,7 @@ export default class DisplayStaff extends Component {
         })
         .then(response => {
             this.setState({
-                staff: response,
+                data: response.data,
             })
         })
         .catch(error => {

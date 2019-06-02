@@ -4,7 +4,7 @@ const StaffMember = require('../../models/staffMember');
 module.exports = {
     shifts: async () => {
         try {
-            const shifts = await Shift.find().populate('assignedStaff');
+            const shifts = await Shift.find().populate('assignedStaffMember');
             return shifts.map(shift => {
                 return {
                     ...shift._doc
@@ -60,7 +60,7 @@ module.exports = {
             }
 
             if (!staffMember.assignedShifts.some(assignedShift => {
-                return assignedShift._id === shift._id;
+                return assignedShift._id.toString() === shift._id.toString();
             })) {
                 staffMember.assignedShifts.push(shift);
                 await staffMember.save();

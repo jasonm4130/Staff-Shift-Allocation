@@ -9,3 +9,9 @@ h6 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold; 
 }
+
+.text {
+    &-center {
+        text-align: center;
+    }
+}

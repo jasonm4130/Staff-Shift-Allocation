@@ -27,6 +27,7 @@ export default class CreateShift extends Component {
             hours: '',
             day: '',
             requiredRole: '',
+            successMessage: null,
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -76,13 +77,19 @@ export default class CreateShift extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        });
+        }).then(
+            this.setState({
+                successMessage: "Successfully created shift!",
+            })
+        );
     }
 
     render() {
         return (
-            <div>
-                <form className="form-control m-t-75" onSubmit={this.handleSubmit}>
+            <div className="m-t-75">
+                <h1>Create Shift</h1>
+                <h3>{ this.state.successMessage }</h3>
+                <form className="form-control" onSubmit={this.handleSubmit}>
                     <div className="row justify-content-center">
                         <div className="col-md-6 d-flex justify-content-center flex-column m-t-25">
                             <label htmlFor="day">Day</label>

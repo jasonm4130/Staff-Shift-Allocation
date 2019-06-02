@@ -1,0 +1,7 @@
+.staff {
+    &-member {
+        &-card {
+            background: lighten($background, 10%);
+        }
+    }
+}
