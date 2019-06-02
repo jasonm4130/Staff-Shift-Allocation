@@ -6,6 +6,7 @@ module.exports = buildSchema(`
         day: String!
         description: String!
         hours: Float!
+        requiredRole: String!
         assignedStaffMember: StaffMember
     }
 
@@ -13,6 +14,8 @@ module.exports = buildSchema(`
         _id: ID!
         name: String!
         maxHours: Int!
+        daysUnavailable: [String!]
+        validRoles: [String!]!
         assignedShifts: [Shift!]
     }
 
@@ -20,11 +23,14 @@ module.exports = buildSchema(`
         day: String!
         description: String!
         hours: Float!
+        requiredRole: String!
     }
 
     input StaffMemberInput {
         name: String!
         maxHours: Int!
+        daysUnavailable: [String!]
+        validRoles: [String!]!
     }
 
     type RootQuery {

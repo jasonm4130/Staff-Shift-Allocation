@@ -11,6 +11,15 @@ const staffMemberSchema = new Schema({
         type: Number,
         required: true
     },
+    validRoles: [{
+        type: String,
+        enum: ["Manager", "Chef", "Dishwasher", "Cook"],
+        required: true
+    }],
+    daysUnavailable: [{
+        type: String,
+        enum: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+    }],
     assignedShifts: [
         {
             type: Schema.Types.ObjectId,
