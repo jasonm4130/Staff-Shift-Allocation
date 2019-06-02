@@ -45,12 +45,18 @@ module.exports = {
                 throw "No shift found";
             }
 
-            const currentHours = await getStaffMemberAssignedHours(staffMember._id);
-
-            console.log(currentHours);
+            const currentHours = getStaffMemberAssignedHours(staffMember);
 
             if (currentHours + shift.hours > staffMember.maxHours) {
                 throw "Cannot assign staf member to shift, maximum hours reached";
+            }
+
+            if (!rolesMatch(staffMember, shift)) {
+                throw "This staff member cannot preform this role";
+            }
+
+            if (!isStaffMemberAvailable(staffMember, shift)) {
+                throw "This staff member is not available on that day";
             }
 
             if (!staffMember.assignedShifts.some(assignedShift => {
@@ -106,22 +112,28 @@ module.exports = {
     },
 }
 
-const getStaffMemberAssignedHours = async (staffId) => {
-    try {
-        const staffMember = await StaffMember.findById(staffId).populate('assignedShifts');
+const getStaffMemberAssignedHours = (staffMember) => {
+    let currentHours = 0;
 
-        if (!staffMember) {
-            throw "Staff member not found";
-        }
+    staffMember.assignedShifts.forEach(shift => {
+        currentHours += shift.hours;
+    });
 
-        let currentHours = 0;
+    return currentHours;
+}
 
-        staffMember.assignedShifts.forEach(shift => {
-            currentHours += shift.hours;
-        });
-
-        return currentHours;
-    } catch (error) {
-        throw error;
+const rolesMatch = (staffMember, shift) => {
+    const neededRole = shift.requiredRole;
+    if (staffMember.validRoles.includes(neededRole)) {
+        return true;
     }
+    return false;
+}
+
+const isStaffMemberAvailable = (staffMember, shift) => {
+    const shiftDay = shift.day;
+    if (!staffMember.daysUnavailable.includes(shiftDay)) {
+        return true;
+    }
+    return false;
 }
