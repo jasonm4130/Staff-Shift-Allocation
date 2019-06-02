@@ -2,6 +2,7 @@
     "env": {
         "MONGO_USER": "jason",
         "MONGO_PASSWORD": "HdZCns6KvIA5u2La",
-        "MONGO_DB": "staff-shift-allocation"
+        "MONGO_DB": "staff-shift-allocation",
+        "PORT": 3000
     }
 }
