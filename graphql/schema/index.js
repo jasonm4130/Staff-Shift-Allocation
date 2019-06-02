@@ -6,7 +6,14 @@ module.exports = buildSchema(`
         day: String!
         description: String!
         hours: Float!
-        assignedStaff: Staff
+        assignedStaffMember: StaffMember
+    }
+
+    type StaffMember {
+        _id: ID!
+        name: String!
+        maxHours: Int!
+        assignedShifts: [Shift!]
     }
 
     input ShiftInput {
@@ -15,28 +22,21 @@ module.exports = buildSchema(`
         hours: Float!
     }
 
-    type Staff {
-        _id: ID!
-        name: String!
-        maxHours: Int!
-        assignedShifts: [Shift]
-    }
-
-    input StaffInput {
+    input StaffMemberInput {
         name: String!
         maxHours: Int!
     }
 
     type RootQuery {
         shifts: [Shift!]!
-        staffs: [Staff!]!
+        staffMembers: [StaffMember!]!
     }
 
     type RootMutation {
         createShift(shiftInput: ShiftInput): Shift
-        createStaff(staffInput: StaffInput): Staff
-        assignStaff(shiftId: ID!): Shift!
-        unassignShift(staffId: ID, shiftId: ID): Staff!
+        createStaffMember(staffMemberInput: StaffMemberInput): StaffMember
+        assignShift(staffMemberID: ID!, shiftID: ID!): Shift
+        unassignShift(shiftID: ID!): Shift
     }
 
     schema {

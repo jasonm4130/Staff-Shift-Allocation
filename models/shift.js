@@ -16,9 +16,9 @@ const shiftSchema = new Schema({
         type: Number,
         required: true
     },
-    assignedStaff: {
+    assignedStaffMember: {
         type: Schema.Types.ObjectId,
-        ref: 'Staff'
+        ref: 'StaffMember'
     }
 });
 
