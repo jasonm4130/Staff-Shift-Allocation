@@ -1,1 +1,9 @@
-export default endpoint = process.env.API_ENDPOINT ? process.env.API_ENDPOINT : 'http://localhost:3000/api';
+let endpoint;
+
+if (process.env.API_ENDPOINT) {
+    endpoint = process.env.API_ENDPOINT;
+} else {
+    endpoint = 'http://localhost:3000/api';
+}
+
+export default endpoint;
