@@ -9,6 +9,7 @@ export default class Shift extends Component {
         
         this.state = {
             availableStaff: null,
+            errorMessage: '',
         }
 
         this.handleStaffSelectChange = this.handleStaffSelectChange.bind(this);
@@ -56,6 +57,7 @@ export default class Shift extends Component {
         return (
             <div className="shift-card p-t-15 p-b-15 p-l-10 p-r-10 m-t-25 m-b-25">
                 <h2>{ `${this.props.shift.day} - ${this.props.shift.requiredRole}` }</h2>
+                <p className="m-b-10">{ this.state.errorMessage }</p>
                 <div className="m-b-5">Hours: { this.props.shift.hours }</div>
                 <div className="m-b-5">Assigned Staff Member: { this.props.shift.assignedStaffMember ? this.props.shift.assignedStaffMember.name : "none" }</div>
                 { assignStaffMember }
@@ -88,7 +90,19 @@ export default class Shift extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then((response) => {
+        })
+        .then(response => {
+            if (response.status !== 200 && response.status !== 201) {
+                throw new Error('Failed!');
+            }            
+            return response.json()
+        })
+        .then((response) => {
+            if (response.errors) {
+                this.setState({
+                    errorMessage: response.errors[0].message,
+                });
+            }
             this.props.callback();
         });
     }
