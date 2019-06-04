@@ -12,7 +12,7 @@ The problem chosen was that of the Staff Shift Allocation. this problem was chos
 
 The backend was built using MongoDB interfaced with Mongoose and NodeJs with GraphQl as an API layer although in the way that I ended up implementing GraphQl it has lost some of it's benefits. This was my first time using GraphQl in a project, it was also my first time implementing a NoSQL database instead of a regular SQL database.
 
-The backend is hosted on Heroku with the GUI for GraphQl enabled here [https://shift-allocation.herokuapp.com/api](https://shift-allocation.herokuapp.com/api) the front end is hosted on a netlify static server here [https://elegant-poincare-4bc22b.netlify.com/](https://elegant-poincare-4bc22b.netlify.com/)
+The backend is hosted on Heroku with the GUI for GraphQl enabled here [https://secret-plateau-39065.herokuapp.com/](https://secret-plateau-39065.herokuapp.com/) the front end is hosted on a netlify static server here [https://elegant-poincare-4bc22b.netlify.com/](https://elegant-poincare-4bc22b.netlify.com/)
 
 The MongoDB database was chosen to be hosted on MongoDB Atlas as this should provide the most availability and makes it easy for deploying the app anywhere.
 
@@ -36,3 +36,6 @@ My other work can be found in my portfolio at [https://jasonmatthew.dev](https:/
 
 ## Hosted Application
 As stated above the hosted application can be found [https://elegant-poincare-4bc22b.netlify.com/](https://elegant-poincare-4bc22b.netlify.com/)
+
+## Running Locally
+To run the application locally I have included my nodemon setup with credentials (unsecured but obviously in production this is a big no no and would be set as env variables )
