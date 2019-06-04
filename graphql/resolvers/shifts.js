@@ -110,6 +110,10 @@ module.exports = {
             throw error;
         }
     },
+
+    deleteShift: async (args) => {
+        return await Shift.findByIdAndRemove({ _id: args.ID });
+    },
 }
 
 const getStaffMemberAssignedHours = (staffMember) => {

@@ -3,61 +3,19 @@ const chai = require('chai');
 const url = `http://localhost:3000`;
 const request = require('supertest')(url);
 
-let staffMemberId;
+let shiftId;
 
-describe('Staff Member', () => {
-    it('Creates then returns staff member with name = test', (done) => {
+describe('Shifts', () => {
+    it('Creates then returns shift on day = monday', (done) => {
         request
         .post('/api')
         .send({ query: `mutation {
-                createStaffMember(staffMemberInput:{
-                    name:"test",
-                    maxHours:40,
-                    daysUnavailable:["MON"],
-                    validRoles:["Manager"]
-                })
-                {
-                _id
-                name
-                }
-            }`
-        })
-        .expect(200)
-        .end((err,res) => {
-            // res will contain array with one user
-            if (err) return done(err);
-            chai.should().exist(res.body.data.createStaffMember._id);
-            staffMemberId = res.body.data.createStaffMember._id;
-            done();
-        })
-    })
-
-    it('Get list of staff members', (done) => {
-        request
-        .post('/api')
-        .send({ query: `query {
-            staffMembers{
-              _id
-              name
-              maxHours
-              validRoles
-            } 
-          }`
-        })
-        .expect(200)
-        .end((err,res) => {
-            // res will contain array with one user
-            if (err) return done(err);
-            chai.should().exist(res.body.data.staffMembers[0]._id);
-            done();
-        })
-    })
-
-    it('Delete staff member by _id', (done) => {
-        request
-        .post('/api')
-        .send({ query: `mutation {
-            deleteStaffMember(ID: "${staffMemberId}"){
+            createShift(shiftInput: {
+                day:"MON",
+                description:"test shift",
+                hours:5,
+                requiredRole:"Manager"
+            }) {
               _id
             }
           }`
@@ -66,7 +24,46 @@ describe('Staff Member', () => {
         .end((err,res) => {
             // res will contain array with one user
             if (err) return done(err);
-            chai.expect(res.body.data.deleteStaffMember._id).to.equal(staffMemberId);
+            chai.should().exist(res.body.data.createShift._id);
+            shiftId = res.body.data.createShift._id;
+            done();
+        })
+    })
+
+    it('Get list of shifts', (done) => {
+        request
+        .post('/api')
+        .send({ query: `query {
+            shifts {
+                _id
+                day
+                hours
+            }
+          }`
+        })
+        .expect(200)
+        .end((err,res) => {
+            // res will contain array with one user
+            if (err) return done(err);
+            chai.should().exist(res.body.data.shifts[0]._id);
+            done();
+        })
+    })
+
+    it('Delete staff member by _id', (done) => {
+        request
+        .post('/api')
+        .send({ query: `mutation {
+            deleteShift(ID: "${shiftId}"){
+              _id
+            }
+          }`
+        })
+        .expect(200)
+        .end((err,res) => {
+            // res will contain array with one user
+            if (err) return done(err);
+            chai.expect(res.body.data.deleteShift._id).to.equal(shiftId);
             done();
         })
     })

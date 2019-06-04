@@ -32,5 +32,5 @@ module.exports = {
 
     deleteStaffMember: async (args) => {
         return await StaffMember.findByIdAndRemove({ _id: args.ID });
-    }
+    },
 }
