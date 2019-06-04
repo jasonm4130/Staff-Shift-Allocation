@@ -29,4 +29,8 @@ module.exports = {
             throw error;
         }
     },
+
+    deleteStaffMember: async (args) => {
+        return await StaffMember.findByIdAndRemove({ _id: args.ID });
+    }
 }

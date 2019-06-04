@@ -43,6 +43,7 @@ module.exports = buildSchema(`
         createStaffMember(staffMemberInput: StaffMemberInput): StaffMember
         assignShift(staffMemberID: ID!, shiftID: ID!): Shift
         unassignShift(shiftID: ID!): Shift
+        deleteStaffMember(ID: ID!): StaffMember
     }
 
     schema {

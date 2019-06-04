@@ -1,6 +1,6 @@
 let endpoint;
 
-const deploying = true;
+const deploying = false;
 
 if (deploying) {
     endpoint = 'https://shift-allocation.herokuapp.com/api';
