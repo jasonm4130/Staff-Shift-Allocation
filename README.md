@@ -38,4 +38,6 @@ My other work can be found in my portfolio at [https://jasonmatthew.dev](https:/
 As stated above the hosted application can be found [https://elegant-poincare-4bc22b.netlify.com/](https://elegant-poincare-4bc22b.netlify.com/)
 
 ## Running Locally
-To run the application locally I have included my nodemon setup with credentials (unsecured but obviously in production this is a big no no and would be set as env variables )
+To run the application locally I have included my nodemon setup with credentials (unsecured but obviously in production this is a big no no and would be set as env variables.)
+
+To start the backend service run `npm run dev` to start the front end service cd into the front end directory and run `npm start`. This should be done while also noting that the api endpoint is defined in the api endpoint file in the front end dir. This should be set to localhost.
