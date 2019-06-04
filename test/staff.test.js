@@ -5,7 +5,7 @@ const request = require('supertest')(url);
 
 let userId;
 
-describe('GraphQL', () => {
+describe('Staff Member', () => {
     it('Creates then returns staff member with name = test', (done) => {
         request
         .post('/api')
