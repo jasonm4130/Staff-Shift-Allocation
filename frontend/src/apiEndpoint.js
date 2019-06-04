@@ -3,7 +3,7 @@ let endpoint;
 const deploying = true;
 
 if (deploying) {
-    endpoint = 'https://secret-plateau-39065.herokuapp.com/';
+    endpoint = 'https://shift-allocation.herokuapp.com/api';
 } else {
     endpoint = 'http://localhost:3000/api';
 }
