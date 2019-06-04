@@ -19,6 +19,10 @@ The MongoDB database was chosen to be hosted on MongoDB Atlas as this should pro
 ## Reasoning Behind Tech Choices
 I chose MongoDB and NodeJs as technologies for the backend as I think they are key technologies not just for Adepto but in the web ecosystem in general currently. This also influenced my decision in choosing GraphQl as an API layer as it has been a technology that I have been meaning to learn and this provided a great opportunity to do so.
 
+For testing I chose to test the API in it's entirety as I believe that this would provide better test coverage without drilling down too deep into individual components. As such testing is done with Mocha and Chai, which I have limited experience with but have enjoyed learning and implementing. Please note that test cases have been written based upon the API running locally white the test is being preformed, meaning if no api is running the tests will fail. Likewise the tests have also made the assumption that the remote database is connected and setup, so without this the tests will fail also.
+
+The test cases do preform live database operations which in a production application could be seen as a negative, the assumption here being that these tests would be preformed to a staging database. This also informed how some test cases are run to ensure that the database is left the same way it was found by the testing suite. It should be noted here also that if one test passed and one failed in some cases this would require manual clean up of the database operations.
+
 Trade offs I made because of tech choices were definitely the front end aesthetics and polishedness as I had to learn more about the back end technologies I didn't get to spend as much time on making the front end look as nice or preform as well as I would have liked. With the whole front end of the project being pulled together in a few hours.
 
 Again with the rush to finish the front end, there were a few pieces that I left out. Namely:
@@ -26,7 +30,6 @@ Again with the rush to finish the front end, there were a few pieces that I left
 * Responsive Navbar (My assumption here being that this will mostly be a system used internally or on desktops with the possibility of more mobile friendly coming soon)
 * Limited Staff functionality, I would have liked to add a list of assigned shifts to the staff objects and also been able to cancel shifts from the staff member while also seeing the number of hours out of their maximum capacity they are working. Again this was just down to where I choose to spend the majority of my time in the development process, as all the backend functionality is there.
 * Better overall aesthetics. With more time I think I could have made the whole application look and feel much more exiting and an overall better user experience.
-* Testing - I am fairly inexperience with testing and as such also did not have time to complete any automated tests on the code, however I did complete manual testing and all key features work correctly.
 
 ## Other Work
 My other work can be found in my portfolio at [https://jasonmatthew.dev](https://jasonmatthew.dev)
